@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- CMM prototype (GitHub Pages): resolve deep links and default the site
+         root to the Conversational Money Map screen before the app boots. -->
+    <script>
+      (function () {
+        var base = '/conversational-money-map-prototype';
+        var target = base + '/prototypes/conversational-money-map';
+        var l = window.location;
+        // 1) SPA deep-link restore (spa-github-pages): 404.html encodes the
+        //    requested path into "?/...". Rebuild the real path here.
+        if (l.search && l.search.charAt(1) === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash,
+          );
+        }
+        // 2) Default the bare site root to the CMM prototype route so the
+        //    landing URL opens the prototype (not the sign-in screen).
+        var p = window.location.pathname.replace(/\/*$/, '');
+        if (p === base || p === '') {
+          window.history.replaceState(
+            null,
+            null,
+            target + window.location.search + window.location.hash,
+          );
+        }
+      })();
+    </script>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Fruitful (Unknown)</title>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <link rel="preload" href="/_expo/static/css/style-dbb7d54f8081ce24b232515735233d8c.css" as="style"><link rel="stylesheet" href="/_expo/static/css/style-dbb7d54f8081ce24b232515735233d8c.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,600,700&display=swap"><link rel="preload" href="/_expo/static/css/index-2b6d023ba6b9cc30d0e417c4340d963b.css" as="style"><link rel="stylesheet" href="/_expo/static/css/index-2b6d023ba6b9cc30d0e417c4340d963b.css"><link rel="preload" href="/_expo/static/css/reset-a5b7d70ec6b2507a0b6724f00f6321ce.css" as="style"><link rel="stylesheet" href="/_expo/static/css/reset-a5b7d70ec6b2507a0b6724f00f6321ce.css"></head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+  <script src="/_expo/static/js/web/entry-9cd266e66b00863865150ded5967bf3e.js" defer></script>
+</body>
+</html>
